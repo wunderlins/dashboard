@@ -60,7 +60,7 @@ dashboard.factory("globals", function($window, $http) {
 	return factory;
 });
 
-function _appController($scope, $window, globals) {
+function _appController($scope, $window, globals, $timeout) {
 	$scope.services = {results:[]};
 	$scope.services_len = 0;
 	$scope.hosts = {results:[]};
@@ -112,7 +112,12 @@ function _appController($scope, $window, globals) {
 	$scope.serviceErrrorWarningFilter = function (item) { 
 		return item.attrs.last_state === 1;
 	};
+	
+	// refresh data periodically
+  $timeout(function() {
+    globals.fetch();
+  }, 10000)
 }
 
-dashboard.controller("appController", ['$scope', '$window', 'globals', _appController]);
+dashboard.controller("appController", ['$scope', '$window', 'globals', '$timeout', _appController]);
 

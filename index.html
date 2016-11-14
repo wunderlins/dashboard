@@ -15,66 +15,94 @@
   .crittbl {
   	font-size: 2em;
   }
+  
+.success {
+    width: 8em;
+    height: 3.2em;
+    background-color: red;
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+}
+  
   </style>
 </head>
 
 <body data-ng-init='init({})' data-ng-controller="appController">
 
 <div class="container">
-	<div class="banner alert alert-danger" role="alert">
-		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-		Critical
-		<span class="pull-right label label-danger">
-			{{services_critical}}
-			/
-			{{services_len}}
-		</span>
+
+	<div data-ng-if="services_critical > 0">
+		<div class="banner alert alert-danger" role="alert">
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			Critical
+			<span class="pull-right label label-danger">
+				{{services_critical}}
+				/
+				{{services_len}}
+			</span>
+		</div>
+	
+		<table class="table crittbl table-striped">
+			<tbody>
+				<tr data-ng-repeat="i in services.results | filter: serviceErrrorCriticalFilter">
+				<!--tr data-ng-repeat="i in services.results"-->
+					<td><em>{{i.attrs.host_name.replace(".ms.uhbs.ch", "")}}</em><br/>
+					{{i.attrs.display_name}}</td>
+					<!--td>{{i.attrs.last_state}}</td>
+					<td>{{i.attrs.acknowledgement}}</td-->
+					<td data-ng-if="i.attrs.acknowledgement != 0">
+					<b>Aknowledged</b>
+					{{i.attrs.last_check_result.output}}</td>
+					<td data-ng-if="i.attrs.acknowledgement == 0">
+					{{i.attrs.last_check_result.output}}</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 	
-	<table class="table crittbl table-striped">
-		<tbody>
-			<tr data-ng-repeat="i in services.results | filter: serviceErrrorCriticalFilter">
-			<!--tr data-ng-repeat="i in services.results"-->
-				<td><em>{{i.attrs.host_name.replace(".ms.uhbs.ch", "")}}</em><br/>
-				{{i.attrs.display_name}}</td>
-				<!--td>{{i.attrs.last_state}}</td>
-				<td>{{i.attrs.acknowledgement}}</td-->
-				<td data-ng-if="i.attrs.acknowledgement != 0">
-				<b>Aknowledged</b>
-				{{i.attrs.last_check_result.output}}</td>
-				<td data-ng-if="i.attrs.acknowledgement == 0">
-				{{i.attrs.last_check_result.output}}</td>
-			</tr>
-		</tbody>
-	</table>
-
-	<div class="banner alert alert-warning" role="alert">
-		<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-		Critical
-		<span class="pull-right label label-warning">
-			{{services_warning}}
-			/
-			{{services_len}}
-		</span>
+	<div data-ng-if="services_warning > 0">
+		<div class="banner alert alert-warning" role="alert">
+			<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+			Warning
+			<span class="pull-right label label-warning">
+				{{services_warning}}
+				/
+				{{services_len}}
+			</span>
+		</div>
+	
+		<table class="table crittbl table-striped">
+			<tbody>
+				<tr data-ng-repeat="i in services.results | filter: serviceErrrorWarningFilter">
+				<!--tr data-ng-repeat="i in services.results"-->
+					<td><em>{{i.attrs.host_name.replace(".ms.uhbs.ch", "")}}</em><br/>
+					{{i.attrs.display_name}}</td>
+					<!--td>{{i.attrs.last_state}}</td>
+					<td>{{i.attrs.acknowledgement}}</td-->
+					<td data-ng-if="i.attrs.acknowledgement != 0">
+					<b>Aknowledged</b>
+					{{i.attrs.last_check_result.output}}</td>
+					<td data-ng-if="i.attrs.acknowledgement == 0">
+					{{i.attrs.last_check_result.output}}</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 	
-	<table class="table crittbl table-striped">
-		<tbody>
-			<tr data-ng-repeat="i in services.results | filter: serviceErrrorWarningFilter">
-			<!--tr data-ng-repeat="i in services.results"-->
-				<td><em>{{i.attrs.host_name.replace(".ms.uhbs.ch", "")}}</em><br/>
-				{{i.attrs.display_name}}</td>
-				<!--td>{{i.attrs.last_state}}</td>
-				<td>{{i.attrs.acknowledgement}}</td-->
-				<td data-ng-if="i.attrs.acknowledgement != 0">
-				<b>Aknowledged</b>
-				{{i.attrs.last_check_result.output}}</td>
-				<td data-ng-if="i.attrs.acknowledgement == 0">
-				{{i.attrs.last_check_result.output}}</td>
-			</tr>
-		</tbody>
-	</table>
-
+	<div data-ng-if="services_warning == 0 && services_critical == 0">
+		<div class="banner alert alert-success success">
+		<center>
+			<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+			All fine and dandy
+		</center>
+		</div>
+	</div>
 
 </div>
 
