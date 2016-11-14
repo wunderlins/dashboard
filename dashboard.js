@@ -4,7 +4,7 @@
  */
 
 "use strict";
-var dashboard = angular.module("dashboard", []);
+var dashboard = angular.module("dashboard", ['ui.bootstrap']);
 
 dashboard.factory("globals", function($window, $http) {
 	var factory = {
@@ -91,8 +91,12 @@ function _appController($scope, $window, globals) {
 		globals.fetch();
 	}
 	
-	$scope.serviceErrrorFilter = function (item) { 
-		return item.attrs.last_state > 0; 
+	$scope.serviceErrrorHardFilter = function (item) { 
+		return item.attrs.last_state > 1;
+	};
+	
+	$scope.serviceErrrorSoftFilter = function (item) { 
+		return item.attrs.last_state === 1;
 	};
 }
 
