@@ -8,6 +8,14 @@
 
 <body data-ng-init='init({})' data-ng-controller="appController">
 
+<table>
+	<tr data-ng-repeat="i in services.results | filter: serviceErrrorFilter">
+		<td>{{i.name}}</td>
+		<td>{{i.attrs.last_state}}</td>
+	</tr>
+</table>
+
+
 <script type="application/javascript" src="node_modules/angular/angular.js"></script>
 <script type="application/javascript" src="dashboard.js"></script>
 
