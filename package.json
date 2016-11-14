@@ -1,0 +1,27 @@
+{
+  "name": "dashboard",
+  "version": "0.0.0",
+  "description": "Icinga Dashboard View",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run lite",
+    "lite": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wunderlins/dashboard.git"
+  },
+  "author": "Simon Wunderlin",
+  "license": "GPL 2",
+  "bugs": {
+    "url": "https://github.com/wunderlins/dashboard/issues"
+  },
+  "dependencies": {
+    "angular": "^1.5.8"
+  },
+  "devDependencies": {
+    "concurrently": "^1.0.0",
+    "lite-server": "^2.0.1"
+  }
+}
