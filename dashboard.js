@@ -65,25 +65,39 @@ function _appController($scope, $window, globals) {
 	$scope.services_len = 0;
 	$scope.hosts = {results:[]};
 	$scope.hosts_len = 0;
+	$scope.services_critical = 0;
+	$scope.services_warning = 0;
 
+	var e;
 	$scope.$watch(function(){
 		return globals.services.data;
 	}, function(newValue, oldValue){
 		$scope.services = globals.services.data;
-		if (globals.services.data.results && globals.services.data.results.length)
+		$scope.services_critical = 0;
+		$scope.services_warning = 0;
+		if (globals.services.data.results && globals.services.data.results.length) {
 			$scope.services_len = globals.services.data.results.length;
-		else 
+			for (e in globals.services.data.results) {
+				if (globals.services.data.results[e].attrs.last_state == 2) {
+					$scope.services_critical++;
+				}
+				if (globals.services.data.results[e].attrs.last_state == 1)
+					$scope.services_warning++;
+			}
+		} else {
 			$scope.services_len = 0;
+		}
 	});	
 	
 	$scope.$watch(function(){
 		return globals.hosts.data;
 	}, function(newValue, oldValue){
 		$scope.hosts = globals.hosts.data;
-		if (globals.hosts.data.results && globals.hosts.data.results.length)
+		if (globals.hosts.data.results && globals.hosts.data.results.length) {
 			$scope.hosts_len = globals.hosts.data.results.length;
-		else 
+		} else {
 			$scope.hosts_len = 0;
+		}
 	});	
 	
 	$scope.init = function(u){
@@ -91,11 +105,11 @@ function _appController($scope, $window, globals) {
 		globals.fetch();
 	}
 	
-	$scope.serviceErrrorHardFilter = function (item) { 
+	$scope.serviceErrrorCriticalFilter = function (item) { 
 		return item.attrs.last_state > 1;
 	};
 	
-	$scope.serviceErrrorSoftFilter = function (item) { 
+	$scope.serviceErrrorWarningFilter = function (item) { 
 		return item.attrs.last_state === 1;
 	};
 }
