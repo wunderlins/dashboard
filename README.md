@@ -18,4 +18,9 @@
 	$ export PATH="$PATH":node_modules/.bin/
 	$ npm start
 
-
+## deploy
+- remove dev flag in dashboard.js
+- in index.html, switch all css/js includes to min versions
+- tar xzf ../dashboard-`VERSION`.tgz .
+- git tag RELEASE_`VERSION`
+- git push --tags
