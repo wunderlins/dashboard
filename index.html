@@ -16,19 +16,19 @@
   	font-size: 2em;
   }
   
-.success {
-    width: 8em;
-    height: 3.2em;
-    background-color: red;
+	.success {
+		width: 8em;
+		height: 3.2em;
+		background-color: red;
 
-    position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+		position: absolute;
+		top:0;
+		bottom: 0;
+		left: 0;
+		right: 0;
 
-    margin: auto;
-}
+		margin: auto;
+	}
   
   </style>
 </head>
@@ -103,6 +103,24 @@
 		</center>
 		</div>
 	</div>
+
+	<!-- debug -->
+	<!--table class="table crittbl table-striped">
+		<tbody>
+			<tr data-ng-repeat="i in services.results">
+				<td>{{$index}}<em> {{i.attrs.host_name.replace(".ms.uhbs.ch", "")}}</em><br/>
+				{{i.attrs.display_name}}</td>
+				<td>{{i.attrs.last_state}}</td>
+				<td>{{i.attrs.acknowledgement}}</td>
+				<td data-ng-if="i.attrs.acknowledgement != 0">
+				<b>Aknowledged</b>
+				{{i.attrs.last_check_result.output}}</td>
+				<td data-ng-if="i.attrs.acknowledgement == 0">
+				{{i.attrs.last_check_result.output}}</td>
+			</tr>
+		</tbody>
+	</table-->
+
 
 </div>
 
