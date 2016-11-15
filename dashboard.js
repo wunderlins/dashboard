@@ -12,7 +12,7 @@ dashboard.factory("globals", function($window, $http) {
 	var factory = {
 		hosts: {
 			// filter for error services: ?filter=service.state!=0
-			location: 'https://icticingalp01.ms.uhbs.ch:5665/v1/objects/services',
+			location: 'https://icticingalp01.ms.uhbs.ch:5665/v1/objects/hosts',
 			data: [],
 			error: null,
 			response: null
@@ -129,7 +129,15 @@ function _appController($scope, $window, globals, $timeout) {
 		  reload();
 		}, 10000);
 	}
+
+	// reload page periodicalle to preven the browser eating all memmory
+	function reload_page() {
+		$timeout(function() {
+		  window.location.reload();
+		}, 60*60*1000); // every hour
+	}
 	
+	reload_page();
 	reload();
 	
 	/*
