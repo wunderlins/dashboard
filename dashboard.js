@@ -11,6 +11,7 @@ dashboard.factory("globals", function($window, $http) {
 	
 	var factory = {
 		hosts: {
+			// filter for error services: ?filter=service.state!=0
 			location: 'https://icticingalp01.ms.uhbs.ch:5665/v1/objects/services',
 			data: [],
 			error: null,
@@ -27,7 +28,7 @@ dashboard.factory("globals", function($window, $http) {
 	// dev env uses a script (fetch.sh) to get json from server
 	if (dev) {
 		factory.hosts.location = "hosts.json"
-		factory.services.location = "services.json"
+		factory.services.location = "services-soft.json"
 	}
 	
 	function success_callback_services(response) {
@@ -86,10 +87,10 @@ function _appController($scope, $window, globals, $timeout) {
 		if (globals.services.data.results && globals.services.data.results.length) {
 			$scope.services_len = globals.services.data.results.length;
 			for (e in globals.services.data.results) {
-				if (globals.services.data.results[e].attrs.state == 2) {
+				if (globals.services.data.results[e].attrs.last_hard_state == 2) {
 					$scope.services_critical++;
 				}
-				if (globals.services.data.results[e].attrs.state == 1)
+				if (globals.services.data.results[e].attrs.last_hard_state == 1)
 					$scope.services_warning++;
 			}
 		} else {

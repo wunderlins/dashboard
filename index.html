@@ -110,7 +110,7 @@
 			<tr data-ng-repeat="i in services.results">
 				<td>{{$index}}<em> {{i.attrs.host_name.replace(".ms.uhbs.ch", "")}}</em><br/>
 				{{i.attrs.display_name}}</td>
-				<td>{{i.attrs.last_state}}</td>
+				<td>{{i.attrs.state}} {{i.attrs.last_hard_state}}</td>
 				<td>{{i.attrs.acknowledgement}}</td>
 				<td data-ng-if="i.attrs.acknowledgement != 0">
 				<b>Aknowledged</b>
