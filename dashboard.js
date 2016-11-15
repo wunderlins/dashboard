@@ -131,13 +131,10 @@ function _appController($scope, $window, globals, $timeout) {
 	}
 
 	// reload page periodicalle to preven the browser eating all memmory
-	function reload_page() {
-		$timeout(function() {
-		  window.location.reload();
-		}, 60*60*1000); // every hour
-	}
+	$timeout(function() {
+	  window.location.reload();
+	}, 60*60*1000); // every hour
 	
-	reload_page();
 	reload();
 	
 	/*
