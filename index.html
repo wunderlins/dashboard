@@ -117,7 +117,11 @@
 				<tr data-ng-repeat="i in services.results | filter: serviceErrrorCriticalFilter">
 				<!--tr data-ng-repeat="i in services.results"-->
 					<td><b>{{i.attrs.display_name}}</b><br/>
-					<em><small>{{i.attrs.host_name.replace(".ms.uhbs.ch", "").replace(".uhbs.ch", "").replace(".usb.ch", "")}}</small></em></td>
+					<em><small>{{i.attrs.host_name.replace(".ms.uhbs.ch", "").replace(".uhbs.ch", "").replace(".usb.ch", "").replace(".unibas.ch", "")}}</small></em>
+					
+					<br/>
+					{{hhmm(now()-i.attrs.last_hard_state_change)}}
+					</td>
 					<!--td>{{i.attrs.last_state}}</td>
 					<td>{{i.attrs.acknowledgement}}</td-->
 					<td data-ng-if="i.attrs.acknowledgement != 0">
@@ -146,7 +150,7 @@
 				<tr data-ng-repeat="i in services.results | filter: serviceErrrorWarningFilter">
 				<!--tr data-ng-repeat="i in services.results"-->
 					<td><b>{{i.attrs.display_name}}</b><br/>
-					<em><small>{{i.attrs.host_name.replace(".ms.uhbs.ch", "").replace(".uhbs.ch", "").replace(".usb.ch", "")}}</small></em></td>
+					<em><small>{{i.attrs.host_name.replace(".ms.uhbs.ch", "").replace(".uhbs.ch", "").replace(".usb.ch", "").replace(".unibas.ch", "")}}</small></em></td>
 					<!--td>{{i.attrs.last_state}}</td>
 					<td>{{i.attrs.acknowledgement}}</td-->
 					<td data-ng-if="i.attrs.acknowledgement != 0">

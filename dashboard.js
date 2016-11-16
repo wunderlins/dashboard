@@ -143,9 +143,29 @@ function _appController($scope, $window, globals, $timeout) {
 	  window.location.reload();
 	}, 60*60*1000); // every hour
 	
+	$scope.now = function() {
+		var offset = new Date().getTimezoneOffset()*60-3600;
+		//console.log(new Date().dst())
+		return (Math.floor(new Date().getTime() / 1000) + offset);
+	}
+	
+	$scope.hhmm = function (secs) {
+		var sec_num = parseInt(secs, 10); // don't forget the second param
+		var hours   = Math.floor(sec_num / 3600);
+		var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+		var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+		if (hours   < 10) {hours   = "0"+hours;}
+		if (minutes < 10) {minutes = "0"+minutes;}
+		if (seconds < 10) {seconds = "0"+seconds;}
+		return hours+':'+minutes; // +':'+seconds;
+	}
+	
 	reload();
 	
 }
 
 dashboard.controller("appController", ['$scope', '$window', 'globals', '$timeout', _appController]);
+
+
 
