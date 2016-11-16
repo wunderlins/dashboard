@@ -145,6 +145,7 @@ function _appController($scope, $window, globals, $timeout) {
 	
 	$scope.now = function() {
 		var offset = new Date().getTimezoneOffset()*60-3600;
+		offset = 0;
 		//console.log(new Date().dst())
 		return (Math.floor(new Date().getTime() / 1000) + offset);
 	}
