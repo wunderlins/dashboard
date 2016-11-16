@@ -162,7 +162,7 @@ function _appController($scope, $window, globals, $timeout) {
 	}
 	
 	reload();
-	
+
 }
 
 dashboard.controller("appController", ['$scope', '$window', 'globals', '$timeout', _appController]);

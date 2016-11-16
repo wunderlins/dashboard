@@ -37,6 +37,13 @@
 	.data, .data td, .data tr, .data tbody {
 		background: rgba(255, 255, 255, 0.4) ! important;
 	}
+	.acknowledged {
+		color: #888;
+	}
+  
+  .acknowledged .label-default {
+  	background-color: #CCC;
+  }
   
   </style>
 		
@@ -116,16 +123,15 @@
 			<tbody>
 				<tr data-ng-repeat="i in services.results | filter: serviceErrrorCriticalFilter">
 				<!--tr data-ng-repeat="i in services.results"-->
-					<td><b>{{i.attrs.display_name}}</b><br/>
+					<td ng-class="(i.attrs.acknowledgement != 0) ? 'acknowledged': ''"><b>{{i.attrs.display_name}}</b><br/>
 					<em><small>{{i.attrs.host_name.replace(".ms.uhbs.ch", "").replace(".uhbs.ch", "").replace(".usb.ch", "").replace(".unibas.ch", "")}}</small></em>
-					
 					<br/>
-					{{hhmm(now()-i.attrs.last_hard_state_change)}}
+					<span class="label label-default">{{hhmm(now()-i.attrs.last_hard_state_change)}}<span>
 					</td>
 					<!--td>{{i.attrs.last_state}}</td>
 					<td>{{i.attrs.acknowledgement}}</td-->
-					<td data-ng-if="i.attrs.acknowledgement != 0">
-					<b>Aknowledged</b>
+					<td data-ng-if="i.attrs.acknowledgement != 0" class="acknowledged">
+					<span class="label label-info"><span class="glyphicon glyphicon-ok"></span> Aknowledged</span>
 					{{i.attrs.last_check_result.output}}</td>
 					<td data-ng-if="i.attrs.acknowledgement == 0">
 					{{i.attrs.last_check_result.output}}</td>
@@ -149,12 +155,15 @@
 			<tbody>
 				<tr data-ng-repeat="i in services.results | filter: serviceErrrorWarningFilter">
 				<!--tr data-ng-repeat="i in services.results"-->
-					<td><b>{{i.attrs.display_name}}</b><br/>
-					<em><small>{{i.attrs.host_name.replace(".ms.uhbs.ch", "").replace(".uhbs.ch", "").replace(".usb.ch", "").replace(".unibas.ch", "")}}</small></em></td>
+					<td ng-class="(i.attrs.acknowledgement != 0) ? 'acknowledged': ''"><b>{{i.attrs.display_name}}</b><br/>
+					<em><small>{{i.attrs.host_name.replace(".ms.uhbs.ch", "").replace(".uhbs.ch", "").replace(".usb.ch", "").replace(".unibas.ch", "")}}</small></em>
+					<br/>
+					<span class="label label-default">{{hhmm(now()-i.attrs.last_hard_state_change)}}<span>
+					</td>
 					<!--td>{{i.attrs.last_state}}</td>
 					<td>{{i.attrs.acknowledgement}}</td-->
-					<td data-ng-if="i.attrs.acknowledgement != 0">
-					<b>Aknowledged</b>
+					<td data-ng-if="i.attrs.acknowledgement != 0" class="acknowledged">
+					<span class="label label-info"><span class="glyphicon glyphicon-ok"></span> Aknowledged</span>
 					{{i.attrs.last_check_result.output}}</td>
 					<td data-ng-if="i.attrs.acknowledgement == 0">
 					{{i.attrs.last_check_result.output}}</td>
