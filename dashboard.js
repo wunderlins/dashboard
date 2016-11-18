@@ -1,10 +1,13 @@
 /**
  * Iciniga api description:
  * http://docs.icinga.org/icinga2/latest/doc/module/icinga2/chapter/icinga2-api
+ *
+ * example host group filter:
+ * https://icticingalp01.ms.uhbs.ch:5665/v1/objects/services?filter=%22isop%22%20in%20service.groups
  */
 
 "use strict";
-var dashboard = angular.module("dashboard", ['ui.bootstrap', 'video-background']);
+var dashboard = angular.module("dashboard", ['ui.bootstrap']);
 
 dashboard.factory("globals", function($window, $http) {
 	var dev = true;
