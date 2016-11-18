@@ -123,11 +123,11 @@ function _appController($scope, $window, globals, $timeout) {
 	}
 	
 	$scope.serviceErrrorCriticalFilter = function (item) { 
-		return item.attrs.last_state == 2;
+		return item.attrs.last_hard_state == 2;
 	};
 	
 	$scope.serviceErrrorWarningFilter = function (item) { 
-		return item.attrs.last_state === 1;
+		return item.attrs.last_hard_state == 1;
 	};
 	
 	// refresh data periodically
