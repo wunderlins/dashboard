@@ -106,11 +106,17 @@
   
 </head>
 
-<body>
+<body data-ng-init='init()' data-ng-controller="appController">
+<!--video-background 
+	source="bgvideo" 
+	loop="true"
+	class="bg-video" 
+	autoplay="true" 
+	key-controls="true">
+</video-background-->
 
-<div id="bgvideo" style="position: fixed; z-index: -99; width: 100%; height: 100%; top:0px; left: 0px;"></div>
 
-<div class="container" data-ng-init='init()' data-ng-controller="appController">
+<div class="container" >
 
 	<div data-ng-if="services_critical > 0">
 		<div class="banner alert alert-danger" role="alert">
@@ -180,7 +186,13 @@
 		<div class="banner alert alert-success success">
 		<center>
 			<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-			All fine and dandy
+			<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+			<br />
+			mmmmm'kay
 		</center>
 		</div>
 	</div>
@@ -202,6 +214,7 @@
 		</tbody>
 	</table-->
 
+
 </div>
 
 <!-- background video -->
@@ -214,6 +227,7 @@
 
 <script type="application/javascript" src="node_modules/angular/angular.min.js"></script>
 <script type="application/javascript" src="node_modules/angular-bootstrap/ui-bootstrap.min.js"></script>
+<script type="application/javascript" src="node_modules/angular-video-background/src/video-background.module.js"></script>
 
 <script type="application/javascript" src="dashboard.js"></script>
 

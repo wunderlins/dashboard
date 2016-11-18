@@ -4,7 +4,7 @@
  */
 
 "use strict";
-var dashboard = angular.module("dashboard", ['ui.bootstrap']);
+var dashboard = angular.module("dashboard", ['ui.bootstrap', 'video-background']);
 
 dashboard.factory("globals", function($window, $http) {
 	var dev = true;
@@ -123,7 +123,7 @@ function _appController($scope, $window, globals, $timeout) {
 	}
 	
 	$scope.serviceErrrorCriticalFilter = function (item) { 
-		return item.attrs.last_state > 1;
+		return item.attrs.last_state == 2;
 	};
 	
 	$scope.serviceErrrorWarningFilter = function (item) { 
@@ -160,6 +160,10 @@ function _appController($scope, $window, globals, $timeout) {
 		if (minutes < 10) {minutes = "0"+minutes;}
 		if (seconds < 10) {seconds = "0"+seconds;}
 		return hours+':'+minutes; // +':'+seconds;
+	}
+	
+	$scope.bgvideo = {
+		mp4: "/fireplace.mp4"
 	}
 	
 	reload();
